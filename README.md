@@ -1,5 +1,6 @@
-# Guys here is the live working demo
-# <a href="https://therichpost.com/built-ecommerce-website-with-vuejs/">Live Demo</a>
+<!-- # Guys here is the live working demo -->
+
+<!-- # <a href="">Live Demo</a> -->
 
 ## Project setup
 
