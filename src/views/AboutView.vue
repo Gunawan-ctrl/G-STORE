@@ -1,6 +1,6 @@
 <template>
   <main-header />
-  <sub-header heading="#Siapa Kami" subHeading="Kenali kami" />
+  <sub-header heading="#About" subHeading="Kenali kami" />
   <div class="container">
     <article>
       <img src="@/assets/images/a6.webp" class="about-img" alt="Who we are" />

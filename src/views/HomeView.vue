@@ -29,27 +29,22 @@ import Smartphones from "@/components/home_components/products/Smartphones.vue";
 import ActionButton from "@/components/ActionButton.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
-
 import axios from "axios";
-import { mapActions } from "vuex";
 
 export default {
-  name: "HomeView",
-  data() {
-    return {
-      products: [],
-      laptops: [],
-    };
-  },
-  methods: {
-    ...mapActions(["set_products"]),
-  },
   components: {
     Laptops,
     Smartphones,
     ActionButton,
     MainHeader,
     MainFooter,
+  },
+  name: "HomeView",
+  data() {
+    return {
+      products: [],
+      laptops: [],
+    };
   },
   computed: {
     Smartphones() {
@@ -60,48 +55,38 @@ export default {
     },
   },
   async created() {
-    try {
-      const response = await axios.get(
-        "https://dummyjson.com/products/category/smartphones"
-      );
-      const data = response.data.products.map((product) => {
-        product.images = product.thumbnail;
-        return product;
-      });
-      this.products = data;
-    } catch (error) {
-      console.error("Error fetching product data:", error);
-    }
+    await this.getProduct();
   },
-  async created() {
-    try {
-      const response1 = await axios.get(
-        "https://dummyjson.com/products/category/smartphones"
-      );
-      const data1 = response1.data.products.map((product) => {
-        product.images = product.thumbnail;
-        return product;
-      });
+  methods: {
+    async getProduct() {
+      try {
+        const response1 = await axios.get(
+          "https://dummyjson.com/products/category/smartphones"
+        );
+        const data1 = response1.data.products.map((product) => {
+          product.images = product.thumbnail;
+          return product;
+        });
 
-      const response2 = await axios.get(
-        "https://dummyjson.com/products/category/laptops"
-      );
-      const data2 = response2.data.products.map((laptop) => {
-        laptop.images = laptop.thumbnail;
-        return laptop;
-      });
+        const response2 = await axios.get(
+          "https://dummyjson.com/products/category/laptops"
+        );
+        const data2 = response2.data.products.map((laptop) => {
+          laptop.images = laptop.thumbnail;
+          return laptop;
+        });
 
-      this.products = data1;
-      this.laptops = data2;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+        this.products = data1;
+        this.laptops = data2;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-/* Hero Section */
 .hero__section {
   display: flex;
   align-items: center;
@@ -144,7 +129,6 @@ export default {
 @media (min-width: 3000px) {
   .hero__section {
     background-position: 60% 30%;
-    /* background-size: cover; */
   }
 }
 </style>
